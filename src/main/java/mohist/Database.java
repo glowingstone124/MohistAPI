@@ -17,44 +17,45 @@ public class Database {
     public static void init() {
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
             connection.setAutoCommit(false);
-            String init = "CREATE TABLE IF NOT EXISTS developers (\n" +
-                    "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "    username VARCHAR(255) NOT NULL,\n" +
-                    "    avatar VARCHAR(255),\n" +
-                    "    github VARCHAR(255) NOT NULL,\n" +
-                    "    description TEXT\n" +
-                    ");\n" +
-                    "\n" +
-                    "CREATE TABLE IF NOT EXISTS clouds (\n" +
-                    "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "    name VARCHAR(255) NOT NULL,\n" +
-                    "    avatar VARCHAR(255),\n" +
-                    "    description TEXT\n" +
-                    ");\n" +
-                    "\n" +
-                    "CREATE TABLE IF NOT EXISTS tools (\n" +
-                    "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "    name VARCHAR(255) NOT NULL,\n" +
-                    "    avatar VARCHAR(255),\n" +
-                    "    description TEXT\n" +
-                    ");\n" +
-                    "\n" +
-                    "CREATE TABLE IF NOT EXISTS events (\n" +
-                    "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "    name VARCHAR(255) NOT NULL,\n" +
-                    "    avatar VARCHAR(255),\n" +
-                    "    description TEXT,\n" +
-                    "    url VARCHAR(255)\n" +
-                    ");\n" +
-                    "\n" +
-                    "CREATE TABLE IF NOT EXISTS sources (\n" +
-                    "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "    name VARCHAR(255) NOT NULL,\n" +
-                    "    avatar VARCHAR(255),\n" +
-                    "    description TEXT,\n" +
-                    "    url VARCHAR(255),\n" +
-                    "    version VARCHAR(10) NOT NULL\n" +
-                    ");\n";
+            String init = "CREATE TABLE IF NOT EXISTS developers ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "username VARCHAR(255) NOT NULL, "
+                    + "avatar VARCHAR(255), "
+                    + "github VARCHAR(255) NOT NULL, "
+                    + "description TEXT"
+                    + ");"
+
+                    + "CREATE TABLE IF NOT EXISTS clouds ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "name VARCHAR(255) NOT NULL, "
+                    + "avatar VARCHAR(255), "
+                    + "description TEXT"
+                    + ");"
+
+                    + "CREATE TABLE IF NOT EXISTS tools ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "name VARCHAR(255) NOT NULL, "
+                    + "avatar VARCHAR(255), "
+                    + "description TEXT"
+                    + ");"
+
+                    + "CREATE TABLE IF NOT EXISTS events ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "name VARCHAR(255) NOT NULL, "
+                    + "avatar VARCHAR(255), "
+                    + "description TEXT, "
+                    + "url VARCHAR(255)"
+                    + ");"
+
+                    + "CREATE TABLE IF NOT EXISTS sources ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "name VARCHAR(255) NOT NULL, "
+                    + "avatar VARCHAR(255), "
+                    + "description TEXT, "
+                    + "url VARCHAR(255), "
+                    + "version VARCHAR(10) NOT NULL"
+                    + ");";
+
             try (PreparedStatement statement = connection.prepareStatement(init)) {
                 statement.execute();
                 connection.commit();

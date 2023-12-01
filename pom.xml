@@ -23,9 +23,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.32</version> <!-- 替换为你所使用的驱动程序版本 -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
