@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MohistApplication {
 
     public static void main(String[] args) {
+        Database.init();
         SpringApplication.run(MohistApplication.class, args);
     }
 
