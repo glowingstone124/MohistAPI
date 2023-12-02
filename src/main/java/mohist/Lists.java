@@ -10,7 +10,7 @@ import java.util.Arrays;
 import static mohist.Database.*;
 
 public class Lists {
-    public static String getDevs() {
+    public static JsonObject getDevs() {
         JsonObject returnObj = new JsonObject();
 
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
@@ -37,9 +37,9 @@ public class Lists {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnObj.toString();
+        return returnObj;
     }
-    public static String getClouds() {
+    public static JsonObject getClouds() {
         JsonObject returnObj = new JsonObject();
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
             String query = "SELECT * FROM clouds";
@@ -63,9 +63,9 @@ public class Lists {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnObj.toString();
+        return returnObj;
     }
-    public static String getTools() {
+    public static JsonObject getTools() {
         JsonObject returnObj = new JsonObject();
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
             String query = "SELECT * FROM tools";
@@ -76,9 +76,9 @@ public class Lists {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnObj.toString();
+        return returnObj;
     }
-    public static String getEvents(){
+    public static JsonObject getEvents(){
         JsonObject returnObj = new JsonObject();
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
             String query = "SELECT * FROM events";
@@ -103,12 +103,12 @@ public class Lists {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnObj.toString();
+        return returnObj;
     }
-    public static String getCores(String version){
+    public static JsonObject getCores(String version){
         ArrayList<String> coresVer= new ArrayList<>(Arrays.asList("1.12.2", "1.16.5","1.18.2","1.19.4","1.20.1","1.20.2"));
         if (!coresVer.contains(version)){
-            return "empty";
+            return null;
         }
         JsonObject returnObj = new JsonObject();
         try (Connection connection = DriverManager.getConnection(jdbcUrl, sqlusername, sqlpassword)) {
@@ -121,7 +121,7 @@ public class Lists {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return returnObj.toString();
+        return returnObj;
     }
 
     private static void getListResult(JsonObject returnObj, ResultSet resultSet) throws SQLException {
